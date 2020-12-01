@@ -20,3 +20,4 @@ tswift
 pyrate-limiter
 parsel
 pyrogram
+pytz
