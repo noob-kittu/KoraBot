@@ -1,0 +1,4 @@
+**/__pycache__
+tg_bot/config.py
+.vscode/
+venv
