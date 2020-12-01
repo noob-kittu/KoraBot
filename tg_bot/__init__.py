@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+import time
 
 import telegram.ext as tg
 from googletrans import Translator
@@ -69,6 +70,7 @@ if ENV:
     MOE_API = os.environ.get('MOE_API', "")
     AI_API_KEY = os.environ.get('AI_API_KEY', "")
     MAL_CLIENT_ID = os.environ.get('MAL_CLIENT_ID', "")
+    API_WEATHER  = os.environ.get('API_OPENWEATHER',False)
     MAL_ACCESS_TOKEN = os.environ.get('MAL_ACCESS_TOKEN', "")
     MAL_REFRESH_TOKEN = os.environ.get('MAL_REFRESH_TOKEN', "")
     try:
@@ -126,6 +128,7 @@ else:
     MOE_API = Config.MOE_API
     AI_API_KEY = Config.AI_API_KEY
     MAL_CLIENT_ID = Config.MAL_CLIENT_ID
+    API_OPENWEATHER = Config.API_OPENWEATHER
     MAL_ACCESS_TOKEN = Config.MAL_ACCESS_TOKEN
     MAL_REFRESH_TOKEN = Config.MAL_REFRESH_TOKEN
     try:
