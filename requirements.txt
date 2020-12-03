@@ -21,3 +21,4 @@ pyrate-limiter
 parsel
 pyrogram
 pytz
+gtts
