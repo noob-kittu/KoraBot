@@ -22,4 +22,3 @@ parsel
 pyrogram
 pytz
 gtts
-urllib
