@@ -11,7 +11,11 @@ from telegram.utils.helpers import mention_html
 
 import tg_bot.modules.sql.global_bans_sql as sql
 from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, DEV_USERS, SUPPORT_USERS, WHITELIST_USERS, STRICT_GBAN, GBAN_LOGS
+<<<<<<< HEAD
 from tg_bot.modules.helper_funcs.chat_status import user_admin, is_user_admin, support_plus
+=======
+from tg_bot.modules.helper_funcs.chat_status import user_admin, is_user_admin
+>>>>>>> parent of 92b8164... Update global_bans.py
 from tg_bot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from tg_bot.modules.helper_funcs.misc import send_to_list
 from tg_bot.modules.sql.users_sql import get_all_chats
@@ -47,7 +51,11 @@ UNGBAN_ERRORS = {
 
 
 @run_async
+<<<<<<< HEAD
 @support_plus
+=======
+# @support_plus
+>>>>>>> parent of 92b8164... Update global_bans.py
 def gban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
     user = update.effective_user
@@ -72,6 +80,13 @@ def gban(bot: Bot, update: Update, args: List[str]):
         message.reply_text("OOOH someone's trying to gban a Demon Disaster! *grabs popcorn*")
         return
 
+<<<<<<< HEAD
+=======
+    if int(user_id) in (777000, 1087968824):
+        message.reply_text("Huh, why would I gban Telegram bots?")
+        return
+
+>>>>>>> parent of 92b8164... Update global_bans.py
     if int(user_id) in WHITELIST_USERS:
         message.reply_text("Wolves cannot be gbanned!")
         return
@@ -200,7 +215,11 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
 
 @run_async
+<<<<<<< HEAD
 @support_plus
+=======
+# @support_plus
+>>>>>>> parent of 92b8164... Update global_bans.py
 def ungban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
     user = update.effective_user
@@ -223,6 +242,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
         return
 
     message.reply_text(f"I'll give {user_chat.first_name} a second chance, globally.")
+<<<<<<< HEAD
 
     start_time = time.time()
     datetime_fmt = "%H:%M - %d-%m-%Y"
@@ -240,6 +260,25 @@ def ungban(bot: Bot, update: Update, args: List[str]):
                    f"<b>Unbanned User ID:</b> {user_chat.id}\n"
                    f"<b>Event Stamp:</b> {current_time}")
 
+=======
+
+    start_time = time.time()
+    datetime_fmt = "%H:%M - %d-%m-%Y"
+    current_time = datetime.utcnow().strftime(datetime_fmt)
+
+    if chat.type != 'private':
+        chat_origin = f"<b>{html.escape(chat.title)} ({chat.id})</b>\n"
+    else:
+        chat_origin = f"<b>{chat.id}</b>\n"
+
+    log_message = (f"#UNGBANNED\n"
+                   f"<b>Originated from:</b> {chat_origin}\n"
+                   f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
+                   f"<b>Unbanned User:</b> {mention_html(user_chat.id, user_chat.first_name)}\n"
+                   f"<b>Unbanned User ID:</b> {user_chat.id}\n"
+                   f"<b>Event Stamp:</b> {current_time}")
+
+>>>>>>> parent of 92b8164... Update global_bans.py
     if GBAN_LOGS:
         try:
             log = bot.send_message(GBAN_LOGS, log_message, parse_mode=ParseMode.HTML)
@@ -285,10 +324,17 @@ def ungban(bot: Bot, update: Update, args: List[str]):
         log.edit_text(log_message + f"\n<b>Chats affected:</b> {ungbanned_chats}", parse_mode=ParseMode.HTML)
     else:
         send_to_list(bot, SUDO_USERS + SUPPORT_USERS, "un-gban complete!")
+<<<<<<< HEAD
 
     end_time = time.time()
     ungban_time = round((end_time - start_time), 2)
 
+=======
+
+    end_time = time.time()
+    ungban_time = round((end_time - start_time), 2)
+
+>>>>>>> parent of 92b8164... Update global_bans.py
     if ungban_time > 60:
         ungban_time = round((ungban_time / 60), 2)
         message.reply_text(f"Person has been un-gbanned. Took {ungban_time} min")
@@ -297,7 +343,11 @@ def ungban(bot: Bot, update: Update, args: List[str]):
 
 
 @run_async
+<<<<<<< HEAD
 @support_plus
+=======
+# @support_plus
+>>>>>>> parent of 92b8164... Update global_bans.py
 def gbanlist(bot: Bot, update: Update):
     banned_users = sql.get_gban_list()
 
@@ -324,7 +374,11 @@ def check_and_ban(update, user_id, should_message=True):
         if should_message:
             update.effective_message.reply_text("Alert: This user is globally banned.\n"
                                                 "*bans them from here*.\n"
+<<<<<<< HEAD
                                                 "Appeal chat: @fateunion")
+=======
+                                                "Appeal chat:@KoraSupport ")
+>>>>>>> parent of 92b8164... Update global_bans.py
 
 
 @run_async
@@ -351,7 +405,7 @@ def enforce_gban(bot: Bot, update: Update):
 
 @run_async
 @user_admin
-def gbanstat(bot: Bot, update: Update, args: List[str]):
+def antispam(bot: Bot, update: Update, args: List[str]):
     if len(args) > 0:
         if args[0].lower() in ["on", "yes"]:
             sql.enable_gbans(update.effective_chat.id)
@@ -375,6 +429,9 @@ def __stats__():
 
 
 def __user_info__(user_id):
+    if user_id in (777000, 1087968824):
+        return ""
+
     is_gbanned = sql.is_user_gbanned(user_id)
 
     text = "Gbanned: <b>{}</b>"
@@ -383,7 +440,11 @@ def __user_info__(user_id):
         user = sql.get_gbanned_user(user_id)
         if user.reason:
             text += f"\n<b>Reason:</b> {html.escape(user.reason)}"
+<<<<<<< HEAD
         text += "\n<b>Appeal Chat:</b> @fateunion"
+=======
+        text += "\n<b>Appeal Chat:</b> @KoraSupport "
+>>>>>>> parent of 92b8164... Update global_bans.py
     else:
         text = text.format("No")
     return text
@@ -399,6 +460,7 @@ def __chat_settings__(chat_id, user_id):
 
 __help__ = """
 *Admin only:*
+<<<<<<< HEAD
  - /gbanstat <on/off/yes/no>: Will disable the effect of global bans on your group, or return your current settings.
 
 Gbans, also known as global bans, are used by the bot owners to ban spammers across all groups. This helps protect \
@@ -416,20 +478,33 @@ Note: You can appeal gbans or ask gbans at @fateunion
  - /kicktime: gets the auto-kick time setting
  - /setkicktime: sets new auto-kick time value (between 30 and 900 seconds)
  -/cas : what is cas
+=======
+ - /antispam <on/off/yes/no>: Will disable the effect of global bans on your group, or return your current settings.
+Antispam,  are used by the bot owners to ban spammers across all groups. This helps protectyou and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
+/antispam
+Note: You can appeal gbans or ask gbans at @KoraSupport
+>>>>>>> parent of 92b8164... Update global_bans.py
 """
 
 GBAN_HANDLER = CommandHandler("gban", gban, pass_args=True)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, pass_args=True)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist)
 
+<<<<<<< HEAD
 GBAN_STATUS = CommandHandler("gbanstat", gbanstat, pass_args=True, filters=Filters.group)
+=======
+ANTISPAM = CommandHandler("antispam", antispam, pass_args=True, filters=Filters.group)
+>>>>>>> parent of 92b8164... Update global_bans.py
 
 GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gban)
 
 dispatcher.add_handler(GBAN_HANDLER)
 dispatcher.add_handler(UNGBAN_HANDLER)
 dispatcher.add_handler(GBAN_LIST)
-dispatcher.add_handler(GBAN_STATUS)
+dispatcher.add_handler(ANTISPAM)
+
+__mod_name__ = "Anti Spam"
+__handlers__ = [GBAN_HANDLER, UNGBAN_HANDLER, GBAN_LIST, ANTISPAM]
 
 __mod_name__ = "Anti Spam"
 __handlers__ = [GBAN_HANDLER, UNGBAN_HANDLER, GBAN_LIST, GBAN_STATUS]
