@@ -56,6 +56,8 @@ if ENV:
     PORT = int(os.environ.get('PORT', 5000))
     CERT_PATH = os.environ.get("CERT_PATH")
 
+    APP_ID = os.environ.get("APP_ID")
+    API_HASH = os.environ.get('API_HASH')
     DB_URI = os.environ.get('DATABASE_URL')
     DONATION_LINK = os.environ.get('DONATION_LINK')
     LOAD = os.environ.get("LOAD", "").split()
@@ -141,10 +143,10 @@ SUDO_USERS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
-
+telethn = TelegramClient("kora", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
-kp = Client("korapyro", bot_token=TOKEN)
+kp = Client("korapyro",  api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 
 SUDO_USERS = list(SUDO_USERS)
