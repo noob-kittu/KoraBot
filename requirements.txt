@@ -23,3 +23,4 @@ pyrogram
 pytz
 gtts
 geopy
+gpytranslate
