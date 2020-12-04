@@ -88,7 +88,7 @@ else:
     TOKEN = Config.API_KEY
     APP_ID = Config.APP_ID
     API_HASH = Config.API_HASH
-    
+
     try:
         OWNER_ID = int(Config.OWNER_ID)
     except ValueError:
@@ -153,7 +153,7 @@ telethn = TelegramClient("kora", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 kp = Client("korapyro",  api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN)
-
+client.start()
 
 SUDO_USERS = list(SUDO_USERS)
 WHITELIST_USERS = list(WHITELIST_USERS)
