@@ -1,6 +1,6 @@
 from gpytranslate import Translator
 import asyncio
-# from tg_bot import kp
+from tg_bot import kp
 from pyrogram import filters
 
 
