@@ -7,7 +7,7 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, run_async
 
 from tg_bot import ALLOW_EXCL, dispatcher, CustomCommandHandler
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.chat_status import user_admin, bot_can_delete, connection_status
+from tg_bot.modules.helper_funcs.chat_status import user_admin, bot_can_delete, dev_plus, connection_status
 from tg_bot.modules.sql import cleaner_sql as sql
 
 if ALLOW_EXCL:
@@ -145,6 +145,7 @@ def add_bluetext_ignore_global(bot: Bot, update: Update, args: List[str]):
 
 
 @run_async
+@dev_plus
 def remove_bluetext_ignore_global(bot: Bot, update: Update, args: List[str]):
 
     message = update.effective_message
@@ -164,6 +165,7 @@ def remove_bluetext_ignore_global(bot: Bot, update: Update, args: List[str]):
 
 
 @run_async
+@dev_plus
 def bluetext_ignore_list(bot: Bot, update: Update):
 
     message = update.effective_message
