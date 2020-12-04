@@ -162,4 +162,4 @@ if ALLOW_EXCL:
 
 
 # Initialize Translator
-trl = Translator()
+# trl = Translator()
