@@ -55,9 +55,8 @@ if ENV:
     URL = os.environ.get('URL', "")  # Does not contain token
     PORT = int(os.environ.get('PORT', 5000))
     CERT_PATH = os.environ.get("CERT_PATH")
+    
 
-    APP_ID = os.environ.get("APP_ID")
-    API_HASH = os.environ.get('API_HASH')
     DB_URI = os.environ.get('DATABASE_URL')
     DONATION_LINK = os.environ.get('DONATION_LINK')
     LOAD = os.environ.get("LOAD", "").split()
@@ -115,9 +114,7 @@ else:
     URL = Config.URL
     PORT = Config.PORT
     CERT_PATH = Config.CERT_PATH
-    
-    APP_ID = Config.APP_ID
-    API_HASH = Config.API_HASH
+
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
@@ -148,7 +145,7 @@ updater = tg.Updater(TOKEN, workers=WORKERS)
 telethn = TelegramClient("kora", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
-kp = Client("korapyro",  api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN)
+kp = Client("korapyro",  api_id=2191715, api_hash=f8f5367907ae63115bbdce3524b87671, bot_token=TOKEN)
 
 
 SUDO_USERS = list(SUDO_USERS)
