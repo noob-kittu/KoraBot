@@ -149,7 +149,7 @@ SUDO_USERS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
-telethn = TelegramClient("kora", APP_ID, API_HASH)
+# telethn = TelegramClient("kora", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 kp = Client("korapyro",  api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN)
