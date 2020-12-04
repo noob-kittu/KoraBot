@@ -4,7 +4,7 @@ import sys
 import time
 
 import telegram.ext as tg
-from googletrans import Translator
+# from googletrans import Translator
 
 
 # enable logging
