@@ -155,7 +155,7 @@ DEV_USERS.add(OWNER_ID)
 
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
-oko = TelegramClient("kora", API_ID, API_HASH)
+telethn = TelegramClient("kora", API_ID, API_HASH)
 kp = Client("koraPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 dispatcher = updater.dispatcher
 
