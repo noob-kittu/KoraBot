@@ -4,7 +4,7 @@ import asyncio
 from pyrogram import filters
 
 
-@kp.on_message(filters.command(["tr", "tl"], prefixes=["/", "!", "."]))
+# @kp.on_message(filters.command(["tr", "tl"], prefixes=["/", "!", "."]))
 async def translate(_client, message):
     trl = Translator()
     if message.reply_to_message and (message.reply_to_message.text or message.reply_to_message.caption):
