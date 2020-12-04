@@ -121,6 +121,12 @@ else:
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
 
+    try:
+        BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
+    except ValueError:
+        raise Exception ("Your blacklisted chats list does not contain valid integers.")
+
+
     GBAN_LOGS = Config.GBAN_LOGS
     WEBHOOK = Config.WEBHOOK
     URL = Config.URL
@@ -144,11 +150,7 @@ else:
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
     
-        try:
-        BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
-    except ValueError:
-        raise Exception ("Your blacklisted chats list does not contain valid integers.")
-
+       
 
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(712008424)
