@@ -23,6 +23,10 @@ ENV = bool(os.environ.get('ENV', False))
 
 if ENV:
     TOKEN = os.environ.get('TOKEN', None)
+    APP_ID = os.environ.get('APP_ID', None)
+    API_HASH = os.environ.get('API_HASH', None)
+
+
     try:
         OWNER_ID = int(os.environ.get('OWNER_ID', None))
     except ValueError:
@@ -82,6 +86,9 @@ if ENV:
 else:
     from tg_bot.config import Development as Config
     TOKEN = Config.API_KEY
+    APP_ID = Config.APP_ID
+    API_HASH = Config.API_HASH
+    
     try:
         OWNER_ID = int(Config.OWNER_ID)
     except ValueError:
@@ -145,7 +152,7 @@ updater = tg.Updater(TOKEN, workers=WORKERS)
 telethn = TelegramClient("kora", APP_ID, API_HASH)
 dispatcher = updater.dispatcher
 
-kp = Client("korapyro",  api_id=2191715, api_hash=f8f5367907ae63115bbdce3524b87671, bot_token=TOKEN)
+kp = Client("korapyro",  api_id=APP_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 
 SUDO_USERS = list(SUDO_USERS)
