@@ -22,7 +22,7 @@ coffeehouse
 tswift
 pyrate-limiter
 parsel
-#pyrogram
+pyrogram
 pytz
 gtts
 geopy
