@@ -11,7 +11,7 @@ from telegram.utils.helpers import mention_html
 
 import tg_bot.modules.sql.global_bans_sql as sql
 from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, DEV_USERS, WHITELIST_USERS, STRICT_GBAN, GBAN_LOGS
-from tg_bot.modules.helper_funcs.chat_status import user_admin, is_user_admin, support_plus
+from tg_bot.modules.helper_funcs.chat_status import user_admin, is_user_admin, sudo_user
 from tg_bot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from tg_bot.modules.helper_funcs.misc import send_to_list
 from tg_bot.modules.sql.users_sql import get_all_chats
