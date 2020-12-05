@@ -289,6 +289,31 @@ def can_restrict(func):
 
     return restrict_rights
 
+def user_can_ban(func):
+    @wraps(func)
+    def user_is_banhammer(bot: Bot, update: Update, *args, **kwargs):
+        user = update.effective_user.id
+        member = update.effective_chat.get_member(user)
+        if not (member.can_restrict_members or member.status == "creator") \
+                and user not in SUDO_USERS and user != 1087968824:
+            update.effective_message.reply_text("Sorry son, but you're not worthy to wield the banhammer.")
+            return ""
+        return func(bot, update, *args, **kwargs)
+    
+    return user_is_banhammer
+
+def user_can_warn(func):
+    @wraps(func)
+    def user_is_warnhammer(bot: Bot, update: Update, *args, **kwargs):
+        user = update.effective_user.id
+        member = update.effective_chat.get_member(user)
+        if not (member.can_restrict_members or member.status == "creator") \
+                and user not in SUDO_USERS and user != 1087968824:
+            update.effective_message.reply_text("You don't have the necessary permissions!")
+            return ""
+        return func(bot, update, *args, **kwargs)
+    
+    return user_is_warnhammer
 
 def connection_status(func):
     @wraps(func)
