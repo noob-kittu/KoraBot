@@ -22,12 +22,12 @@ coffeehouse
 tswift
 pyrate-limiter
 parsel
-pyrogram
+#pyrogram
 pytz
 gtts
 geopy
 gpytranslate
 telethon
 mtranslate
-#extwrap
+#textwrap
 jikanpy
