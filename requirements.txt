@@ -25,3 +25,4 @@ gtts
 geopy
 gpytranslate
 telethon
+mtranslate
