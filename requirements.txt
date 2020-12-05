@@ -1,5 +1,6 @@
 future
 emoji
+beautifulsoup4
 bs4
 requests==2.20.0
 sqlalchemy
@@ -27,5 +28,4 @@ geopy
 gpytranslate
 telethon
 mtranslate
-requests
-textwrap
+#extwrap
