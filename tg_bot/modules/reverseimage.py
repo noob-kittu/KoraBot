@@ -2,24 +2,26 @@ import os
 import re
 import requests
 import urllib
-from urllib.request import urlopen
+import urllib.request
+import urllib.parse
 from urllib.error import URLError, HTTPError
 from bs4 import BeautifulSoup
 
-from typing import List
-from telegram import ParseMode, InputMediaPhoto, Update, Bot, TelegramError
+from telegram import InputMediaPhoto, TelegramError
+from telegram import Update, Bot
 from telegram.ext import run_async
 
 from tg_bot import dispatcher
+from typing import List
 
 from tg_bot.modules.disable import DisableAbleCommandHandler
-
+from tg_bot.modules.helper_funcs.alternate import typing_action
 
 opener = urllib.request.build_opener()
 useragent = 'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
 opener.addheaders = [('User-agent', useragent)]
 
-
+@typing_action
 @run_async
 def reverse(bot: Bot, update: Update, args: List[str]):
     if os.path.isfile("okgoogle.png"):
@@ -81,7 +83,7 @@ def reverse(bot: Bot, update: Update, args: List[str]):
             msg.reply_text(f"{VE}\nPlease try again using http or https protocol.")
             return
     else:
-        msg.reply_markdown("Please reply to a sticker, or an image to search it!\nDo you know that you can search an image with a link too? `/reverse [picturelink] <amount>`.")
+        msg.reply_markdown("Please reply to a sticker, or an image to search it!\nDo you know that you can search an image with a link too? /reverse [picturelink] <amount>.")
         return
 
     try:
@@ -96,7 +98,7 @@ def reverse(bot: Bot, update: Update, args: List[str]):
         else:
             xx = bot.send_message(chat_id, "Google told me to go away.", reply_to_message_id=rtmid)
             return
-
+           
         os.remove(imagename)
         match = ParseSauce(fetchUrl + "&hl=en")
         guess = match['best_guess']
@@ -178,6 +180,14 @@ def scam(imgspage, lim):
             break
 
     return imglinks
+
+
+REVERSE_HANDLER = DisableAbleCommandHandler(
+    "reverse", reverse, pass_args=True, admin_ok=True
+)
+
+dispatcher.add_handler(REVERSE_HANDLER)
+
 
 
 __help__ = """
