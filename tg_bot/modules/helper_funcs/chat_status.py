@@ -314,6 +314,18 @@ def user_can_warn(func):
         return func(bot, update, *args, **kwargs)
     
     return user_is_warnhammer
+def user_can_mute(func):
+    @wraps(func)
+    def user_has_tape(bot: Bot, update: Update, *args, **kwargs):
+        user = update.effective_user.id
+        member = update.effective_chat.get_member(user)
+        if not (member.can_restrict_members or member.status == "creator") \
+                and user not in SUDO_USERS and user != 1087968824:
+            update.effective_message.reply_text("You ran out of tape!")
+            return ""
+        return func(bot, update, *args, **kwargs)
+    
+    return user_has_tape
 
 def connection_status(func):
     @wraps(func)
