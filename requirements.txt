@@ -32,3 +32,4 @@ mtranslate
 #textwrap
 jikanpy
 fontTools
+nekos
