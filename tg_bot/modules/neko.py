@@ -1,4 +1,4 @@
-Module by @dankasfuck ported for kora by kittu
+# Module by @dankasfuck ported for kora by kittu
 import requests
 import nekos
 from PIL import Image
