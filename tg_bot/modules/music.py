@@ -15,7 +15,7 @@ from telethon.tl.types import DocumentAttributeVideo, DocumentAttributeAudio
 from telethon import events
 
 from tg_bot.events import register
-from tg_bot.utlis import progress
+from tg_bot.modules.helper_funcs.utils import progress
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
