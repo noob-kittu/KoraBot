@@ -1,4 +1,4 @@
-Module by @dankasfuck ported for saber by hyper
+Module by @dankasfuck ported for kora by kittu
 import requests
 import nekos
 from PIL import Image
