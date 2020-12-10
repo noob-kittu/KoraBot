@@ -35,7 +35,7 @@ fontTools
 nekos.py
 pathlib
 pySmartDL
-youtube_dl
+youtube_dl --verbose
 validators
 tgcrypto
 hachoir
