@@ -39,3 +39,4 @@ youtube_dl
 validators
 tgcrypto
 hachoir
+pybase64
