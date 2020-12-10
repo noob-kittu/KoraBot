@@ -3,20 +3,20 @@ from pathlib import Path
 import asyncio, time, io, math, os, logging, asyncio, shutil, re, subprocess, json
 from re import findall
 from asyncio import sleep
-from telethon.events import NewMessage
-from telethon.tl.custom import Dialog
+from telethn.events import NewMessage
+from telethn.tl.custom import Dialog
 from datetime import datetime as dt
 from pytz import country_names as c_n, country_timezones as c_tz, timezone as tz
 from hachoir.parser import createParser
 import pybase64
 from base64 import b64decode
 from pySmartDL import SmartDL
-from telethon.tl.types import DocumentAttributeVideo, DocumentAttributeAudio
-from telethon import events
+from telethn.tl.types import DocumentAttributeVideo, DocumentAttributeAudio
+from telethn import events
 from tg_bot.events import register
 from tg_bot.modules.helper_funcs.utils import progress
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.messages import ImportChatInviteRequest as Get
+from telethn.errors.rpcerrorlist import YouBlockedUserError
+from telethn.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 from html import unescape
 from urllib.error import HTTPError
