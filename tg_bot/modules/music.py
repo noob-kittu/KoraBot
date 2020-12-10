@@ -161,4 +161,4 @@ __help__ = """
   - /song <name of song > :- get song in High quality uploaded to u
   - /video <link/songname >: download video songs from youtube
 """
-__mod_name__ = "song"
+__mod_name__ = "Song"
