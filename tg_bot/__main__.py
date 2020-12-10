@@ -149,9 +149,11 @@ def start(bot: Bot, update: Update, args: List[str]):
                     [
                         [
                             InlineKeyboardButton(
-                                text="Add Kora to your group.",
-                                url="t.me/{}?startgroup=botstart".format(bot.username),
-                            )
+                                      text="👑 SUMMON ME",
+                                      url="t.me/{}?startgroup=true".format(bot.username)),
+                             InlineKeyboardButton(
+                                      text="⚡️ Get Support",
+                                      url=f"https://t.me/KoraSupport")
                         ]
                     ]
                 ),
