@@ -96,7 +96,6 @@ def smug(bot: Bot, update: Update):
 
 
 NEKO_HANDLER = CommandHandler("neko", neko)
-WALLPAPER_HANDLER = CommandHandler("wallpaper", wallpaper)
 TICKLE_HANDLER = CommandHandler("tickle", tickle)
 FEED_HANDLER = CommandHandler("feed", feed)
 POKE_HANDLER = CommandHandler("poke", poke)
@@ -107,7 +106,6 @@ CUDDLE_HANDLER = CommandHandler("hug", hug)
 
 
 dispatcher.add_handler(NEKO_HANDLER)
-dispatcher.add_handler(WALLPAPER_HANDLER)
 dispatcher.add_handler(FEED_HANDLER)
 dispatcher.add_handler(POKE_HANDLER)
 dispatcher.add_handler(WAIFU_HANDLER)
