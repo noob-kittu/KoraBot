@@ -34,3 +34,5 @@ jikanpy
 fontTools
 nekos.py
 pathlib
+pySmartDL
+youtube_dl
