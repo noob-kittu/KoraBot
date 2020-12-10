@@ -38,4 +38,4 @@ pySmartDL
 youtube_dl
 validators
 tgcrypto
-
+hachoir
