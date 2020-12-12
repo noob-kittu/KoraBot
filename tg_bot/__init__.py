@@ -83,7 +83,7 @@ if ENV:
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
     WALL_API = os.environ.get('WALL_API', None)
     STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
-    TMP_DOWNLOAD_DIRECTORY= os.environ.get('TMP_DOWNLOAD_DIRECTORY', /)
+    # TMP_DOWNLOAD_DIRECTORY= os.environ.get('TMP_DOWNLOAD_DIRECTORY', /)
     MAL_CLIENT_ID = os.environ.get('MAL_CLIENT_ID', "")    
     MAL_ACCESS_TOKEN = os.environ.get('MAL_ACCESS_TOKEN', "")
     MAL_REFRESH_TOKEN = os.environ.get('MAL_REFRESH_TOKEN', "")
@@ -154,7 +154,7 @@ else:
     AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
-    TMP_DOWNLOAD_DIRECTORY=Config.TMP_DOWNLOAD_DIRECTORY=
+    # TMP_DOWNLOAD_DIRECTORY=Config.TMP_DOWNLOAD_DIRECTORY=
     MOE_API = Config.MOE_API   
     MAL_ACCESS_TOKEN = Config.MAL_ACCESS_TOKEN
     MAL_REFRESH_TOKEN = Config.MAL_REFRESH_TOKEN        
