@@ -41,4 +41,3 @@ tgcrypto
 hachoir
 pybase64
 redis
-typing
