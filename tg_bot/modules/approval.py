@@ -62,7 +62,7 @@ def approvel(bot: Bot, update: Update, args: List[str]) -> str:
 @run_async
 @bot_admin
 @user_admin
-@typing_action
+# @typing_action
 def approve(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat  
     user = update.effective_user 
@@ -106,7 +106,7 @@ def approve(bot: Bot, update: Update, args: List[str]) -> str:
 @run_async
 @bot_admin
 @user_admin
-@typing_action
+# @typing_action
 def unapprove(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat  
     user = update.effective_user 
@@ -148,7 +148,7 @@ def unapprove(bot: Bot, update: Update, args: List[str]) -> str:
 @run_async
 @bot_admin
 @user_admin
-@typing_action
+# @typing_action
 def approved(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat 
     user = update.effective_user 
@@ -173,7 +173,7 @@ def approved(bot: Bot, update: Update, args: List[str]) -> str:
 @run_async
 @bot_admin
 @user_admin
-@typing_action
+# @typing_action
 def unapproveall(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat 
     user = update.effective_user 
