@@ -1,7 +1,7 @@
 from telegram.error import BadRequest
 from functools import wraps
 from telegram import error, ChatAction
-from telegram import User, Chat, ChatMember, Update, Bot
+# from telegram import User, Chat, ChatMember, Update, Bot
 
 
 def send_message(message, text, *args, **kwargs):
