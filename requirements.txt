@@ -40,3 +40,4 @@ validators
 tgcrypto
 hachoir
 pybase64
+redis
