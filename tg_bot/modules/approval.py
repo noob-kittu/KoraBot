@@ -14,7 +14,7 @@ from tg_bot.modules.helper_funcs.chat_status import (
     user_admin
 )
 from tg_bot.modules.helper_funcs.extraction import extract_user_and_text
-from tg_bot.modules.helper_funcs.alternate import typing_action
+# from tg_bot.modules.helper_funcs.alternate import typing_action
 
 
 
