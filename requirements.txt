@@ -41,3 +41,4 @@ tgcrypto
 hachoir
 pybase64
 redis
+html2text
