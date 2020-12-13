@@ -45,9 +45,9 @@ async def img_sampler(event):
      downloader.download(jit, limit=5, output_dir='store', adult_filter_off=False, force_replace=False, timeout=60)
      os.chdir(f'./store/"{query}"')
      types = ('*.png', '*.jpeg', '*.jpg') # the tuple of file types
-     files_grabbed = []
+     filesgrabbed = []
      for files in types:
-         files_grabbed.extend(glob.glob(files))
-     await event.client.send_file(event.chat_id, files_grabbed, reply_to=event.id)
-     os.remove(files_grabbed)
+         filesgrabbed.extend(glob.glob(files))
+     await event.client.send_file(event.chat_id, filesgrabbed, reply_to=event.id)
+     os.remove(filesgrabbed)
      os.chdir('./')
