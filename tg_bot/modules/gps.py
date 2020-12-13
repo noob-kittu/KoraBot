@@ -48,6 +48,6 @@ def gps(bot: Bot, update: Update, args: List[str]):
 
 # __mod_name__ = "GPS"
 
-GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
+# GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
 
-dispatcher.add_handler(GPS_HANDLER)
+# dispatcher.add_handler(GPS_HANDLER)
