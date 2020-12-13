@@ -182,11 +182,11 @@ def scam(imgspage, lim):
     return imglinks
 
 
-REVERSE_HANDLER = DisableAbleCommandHandler(
-    "reverse", reverse, pass_args=True, admin_ok=True
-)
+# REVERSE_HANDLER = DisableAbleCommandHandler(
+#     "reverse", reverse, pass_args=True, admin_ok=True
+# )
 
-dispatcher.add_handler(REVERSE_HANDLER)
+# dispatcher.add_handler(REVERSE_HANDLER)
 
 
 
