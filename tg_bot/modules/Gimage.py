@@ -16,13 +16,13 @@ async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
 
         return isinstance(
-            (await oko(functions.channels.GetParticipantRequest(chat, user))).participant,
+            (await client(functions.channels.GetParticipantRequest(chat, user))).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator)
         )
     elif isinstance(chat, types.InputPeerChat):
 
-        ui = await oko.get_peer_id(user)
-        ps = (await oko(functions.messages.GetFullChatRequest(chat.chat_id))) \
+        ui = await client.get_peer_id(user)
+        ps = (await client(functions.messages.GetFullChatRequest(chat.chat_id))) \
             .full_chat.participants.participants
         return isinstance(
             next((p for p in ps if p.user_id == ui), None),
@@ -48,6 +48,6 @@ async def img_sampler(event):
      files_grabbed = []
      for files in types:
          files_grabbed.extend(glob.glob(files))
-     await event.oko.send_file(event.chat_id, files_grabbed, reply_to=event.id)
+     await event.client.send_file(event.chat_id, files_grabbed, reply_to=event.id)
      os.remove(files_grabbed)
      os.chdir('./')
