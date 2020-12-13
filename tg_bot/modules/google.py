@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from tg_bot.events import register
-from tg_bot import client
+from pyrogram import client
 import sys
 import shutil
 from re import findall
