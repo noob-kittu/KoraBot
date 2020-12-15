@@ -27,17 +27,13 @@ pyrogram
 pytz
 gtts
 geopy
-gpytranslate
 telethon==1.16.4
 mtranslate
-#textwrap
-jikanpy
 fontTools
 nekos.py
 pathlib
 pySmartDL 
 validators
-tgcrypto
 hachoir
 pybase64
 redis
