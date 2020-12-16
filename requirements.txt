@@ -37,9 +37,5 @@ validators
 hachoir
 pybase64
 redis
-<<<<<<< HEAD
 html2text
 bing_image_downloader
-=======
-html2text
->>>>>>> parent of 03ec61b... Google Image Search
