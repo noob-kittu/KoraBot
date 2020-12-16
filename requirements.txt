@@ -33,8 +33,6 @@ nekos.py
 pathlib
 pySmartDL 
 validators
-tgcrypto
 hachoir
 pybase64
-redis
 html2text
