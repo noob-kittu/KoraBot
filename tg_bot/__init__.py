@@ -4,7 +4,7 @@ import sys
 import time
 import telegram.ext as tg
 from telethon import TelegramClient
-from redis import StrictRedis
+# from redis import StrictRedis
 from pyrogram import Client, errors
 
 StartTime = time.time()
@@ -61,7 +61,7 @@ if ENV:
         raise Exception("Your developer users list does not contain valid integers.")
 
     GBAN_LOGS = os.environ.get('GBAN_LOGS', None)
-    REDIS_URL =os.environ.get('REDIS_URL')
+    # REDIS_URL =os.environ.get('REDIS_URL')
     WEBHOOK = bool(os.environ.get('WEBHOOK', False))
     URL = os.environ.get('URL', "")  # Does not contain token
     PORT = int(os.environ.get('PORT', 5000))
@@ -172,12 +172,12 @@ SUDO_USERS.add(712008424)
 
 DEV_USERS.add(OWNER_ID)
 
-REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
-try:
-    REDIS.ping()
-    LOGGER.info("Your redis server is now alive!")
-except BaseException:
-    raise Exception("Your redis server is not alive, please check again.")
+# REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
+# try:
+#     REDIS.ping()
+#     LOGGER.info("Your redis server is now alive!")
+# except BaseException:
+#     raise Exception("Your redis server is not alive, please check again.")
 
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
