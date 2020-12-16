@@ -16,7 +16,7 @@ async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
 
         return isinstance(
-            (await oko(functions.channels.GetParticipantRequest(chat, user))).participant,
+            (await client(functions.channels.GetParticipantRequest(chat, user))).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator)
         )
     elif isinstance(chat, types.InputPeerChat):
