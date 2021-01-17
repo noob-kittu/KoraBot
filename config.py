@@ -1,0 +1,2 @@
+bot_token = "1470612626:AAEMIj8MVfgV4_nbuKSmq8XFw96bXc2IZAY"
+owner_id = 1004759522
