@@ -15,20 +15,20 @@ regex_upvote = r"^((?i)\+|\+\+|\+1|thx|tnx|ty|thank you|thanx|thanks|pro|cool|go
 regex_downvote = r"^(\-|\-\-|\-1|👎)$"
 
 
-@app.on_message(filters.command(["start"]))
-async def start(_, message):
-    await message.reply_text(
-        "Hey, I'm A Karma Bot, You Can Upvote Or Downvote Someone Using Me, Join @TheHamkerChat For Support!"
-    )
+# @app.on_message(filters.command(["start"]))
+# async def start(_, message):
+#     await message.reply_text(
+#         "Hey, I'm A Karma Bot, You Can Upvote Or Downvote Someone Using Me, Join @TheHamkerChat For Support!"
+#     )
 
 
-@app.on_message(filters.command(["help"]))
-async def help(_, message):
-    await message.reply_text(
-        """+ To Upvote A Message.
-- To Downvote A Message.
-/karma To Check Karma Points Of This Group."""
-    )
+# @app.on_message(filters.command(["help"]))
+# async def help(_, message):
+#     await message.reply_text(
+#         """+ To Upvote A Message.
+# - To Downvote A Message.
+# /karma To Check Karma Points Of This Group."""
+#     )
 
 
 @app.on_message(filters.text
