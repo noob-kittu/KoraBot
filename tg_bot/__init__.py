@@ -84,6 +84,7 @@ if ENV:
     API_WEATHER  = os.environ.get('API_OPENWEATHER',False)
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
     WALL_API = os.environ.get('WALL_API', None)
+    CUSTOM_CMD = os.environ.get('CUSTOM_CMD', ('/', '!'))
     STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
     SUPPORT_CHAT = os.environ.get('SUPPORT_CHAT', None)
 
@@ -197,4 +198,5 @@ SUPPORT_USERS = list(SUPPORT_USERS)
 # Load at end to ensure all prev variables have been set
 from tg_bot.modules.helper_funcs.handlers import CustomCommandHandler
 
- tg.CommandHandler = CustomCommandHandler
+if CUSTOM_CMD and len(CUSTOM_CMD) >= 1:
+    tg.CommandHandler = CustomCommandHandler
