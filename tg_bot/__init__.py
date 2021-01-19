@@ -92,6 +92,13 @@ if ENV:
     MAL_CLIENT_ID = os.environ.get('MAL_CLIENT_ID', "")    
     MAL_ACCESS_TOKEN = os.environ.get('MAL_ACCESS_TOKEN', "")
     MAL_REFRESH_TOKEN = os.environ.get('MAL_REFRESH_TOKEN', "")
+    
+    try:
+        WHITELIST_CHATS = {int(x) for x in os.environ.get('WHITELIST_CHATS', "").split()}
+    except ValueError:
+        raise Exception(
+            "Your blacklisted chats list does not contain valid integers.")
+
 
     try: 
          BL_CHATS = set(int(x) for x in os.environ.get('BL_CHATS', "").split())  
@@ -164,6 +171,15 @@ else:
     MAL_ACCESS_TOKEN = Config.MAL_ACCESS_TOKEN
     MAL_REFRESH_TOKEN = Config.MAL_REFRESH_TOKEN        
 
+   
+   try:
+        WHITELIST_CHATS = set(int(x) for x in Config.WHITELIST_CHATS or [])
+    except ValueError:
+        raise Exception ("Your blacklisted chats list does not contain valid integers.")
+
+
+   
+   
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
     except ValueError:
