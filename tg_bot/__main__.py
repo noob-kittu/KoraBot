@@ -10,7 +10,7 @@ from telegram.utils.helpers import escape_markdown
 
 from tg_bot import (dispatcher, updater, TOKEN, OWNER_ID, WEBHOOK,
                            CERT_PATH, PORT, URL, LOGGER, BL_CHATS, WHITELIST_CHATS,
-                           kp,client )
+                           kp,oko )
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
@@ -606,18 +606,18 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
         else:
             updater.bot.set_webhook(url=URL + TOKEN)
-            client.run_until_disconnected()
+            oko.run_until_disconnected()
 
     else:
         LOGGER.info("Using long polling.")
         updater.start_polling(timeout=15, read_latency=4)
-        client.run_until_disconnected()
+        oko.run_until_disconnected()
 
     updater.idle()
 
 
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: ", str(ALL_MODULES))
-    client.start(bot_token=TOKEN)
+    oko.start(bot_token=TOKEN)
     kp.start()
     main()
