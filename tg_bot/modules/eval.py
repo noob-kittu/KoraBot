@@ -71,12 +71,12 @@ def send(msg, bot, update):
                                           reply_to_message_id=update.message.message_id,
                                           chat_id=update.effective_chat.id)
 
-@dev_user
+@DEV_USERS
 @run_async
 def evaluate(bot, update):
     send(do(eval, bot, update), bot, update)
 
-@dev_user
+@DEV_USERS
 @run_async
 def execute(bot, update):
     send(do(exec, bot, update), bot, update)
@@ -131,7 +131,7 @@ def do(func, bot, update):
             return result
                
 
-@dev_users
+@DEV_USERS
 @run_async
 def clear(bot, update):
     log_input(update)
