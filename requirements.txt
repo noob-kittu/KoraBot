@@ -36,6 +36,7 @@ pathlib
 pySmartDL 
 validators
 hachoir
+cachetools
 pybase64
 html2text
 bing_image_downloader
