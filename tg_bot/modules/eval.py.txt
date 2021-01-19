@@ -10,7 +10,7 @@ from telegram import ParseMode
 
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from telegram.ext.dispatcher import run_async
-from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin, DEV_USERS
+from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin, dev_user
 from tg_bot import dispatcher, LOGGER
 
 from requests import get
@@ -71,12 +71,12 @@ def send(msg, bot, update):
                                           reply_to_message_id=update.message.message_id,
                                           chat_id=update.effective_chat.id)
 
-@DEV_USERS
+@dev_user
 @run_async
 def evaluate(bot, update):
     send(do(eval, bot, update), bot, update)
 
-@DEV_USERS
+@dev_user
 @run_async
 def execute(bot, update):
     send(do(exec, bot, update), bot, update)
@@ -131,7 +131,7 @@ def do(func, bot, update):
             return result
                
 
-@DEV_USERS
+@dev_user
 @run_async
 def clear(bot, update):
     log_input(update)
