@@ -171,14 +171,7 @@ else:
     MAL_ACCESS_TOKEN = Config.MAL_ACCESS_TOKEN
     MAL_REFRESH_TOKEN = Config.MAL_REFRESH_TOKEN        
 
-   
-   try:
-        WHITELIST_CHATS = set(int(x) for x in Config.WHITELIST_CHATS or [])
-    except ValueError:
-        raise Exception ("Your blacklisted chats list does not contain valid integers.")
 
-
-   
    
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
