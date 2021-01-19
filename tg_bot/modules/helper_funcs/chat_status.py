@@ -5,7 +5,7 @@ from cachetools import TTLCache
 from threading import RLock	
 
 
-from tg_bot import (DEL_CMDS, DEV_USER, SUDO_USERS, SUPPORT_CHAT,	
+from tg_bot import (DEL_CMDS, DEV_USERS, SUDO_USERS, SUPPORT_CHAT,	
                           SUPPORT_USERS,  WHITELIST_USERS,	
                           dispatcher)	
 from tg_bot.mwt import MWT	
@@ -22,24 +22,24 @@ def is_whitelist_plus(chat: Chat,
                       member: ChatMember = None) -> bool:	
     return any(	
         user_id in user for user in	
-        [WHITELIST_USERS, TIGER_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USER])	
+        [WHITELIST_USERS, TIGER_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS])	
 
 
 def is_support_plus(chat: Chat,	
                     user_id: int,	
                     member: ChatMember = None) -> bool:	
-    return user_id in SUPPORT_USERS or user_id in SUDO_USERS or user_id in DEV_USER	
+    return user_id in SUPPORT_USERS or user_id in SUDO_USERS or user_id in DEV_USERS	
 
 
 def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:	
-    return user_id in SUDO_USERS or user_id in DEV_USER	
+    return user_id in SUDO_USERS or user_id in DEV_USERS	
 
 
 @MWT(timeout=60 * 10	
     )  # Cache admin status for 10 mins to avoid extra API requests.	
 def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:	
     if (chat.type == 'private' or user_id in SUDO_USERS or	
-            user_id in DEV_USER or chat.all_members_are_administrators or	
+            user_id in DEV_USERS or chat.all_members_are_administrators or	
             user_id in [777000, 1087968824	
                        ]):  # Count telegram and Group Anonymous as admin	
         return True	
@@ -70,7 +70,7 @@ def is_user_ban_protected(chat: Chat,
                           user_id: int,	
                           member: ChatMember = None) -> bool:	
     if (chat.type == 'private' or user_id in SUDO_USERS or	
-            user_id in DEV_USER or user_id in WHITELIST_USERS or	
+            user_id in DEV_USERS or user_id in WHITELIST_USERS or	
             user_id in  chat.all_members_are_administrators or	
             user_id in [777000, 1087968824	
                        ]):  # Count telegram and Group Anonymous as admin	
@@ -95,7 +95,7 @@ def dev_plus(func):
         bot = context.bot	
         user = update.effective_user	
 
-        if user.id in DEV_USER:	
+        if user.id in DEV_USERS:	
             return func(update, context, *args, **kwargs)	
         elif not user:	
             pass	
