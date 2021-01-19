@@ -10,7 +10,7 @@ from telegram.utils.helpers import escape_markdown
 
 from tg_bot import (dispatcher, updater, TOKEN, OWNER_ID, WEBHOOK,
                            CERT_PATH, PORT, URL, LOGGER, BL_CHATS, WHITELIST_CHATS,
-                           pbot,client )
+                           kp,client )
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
@@ -619,5 +619,5 @@ def main():
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: ", str(ALL_MODULES))
     client.start(bot_token=TOKEN)
-    pbot.start()
+    kp.start()
     main()
