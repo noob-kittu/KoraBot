@@ -36,6 +36,5 @@ pySmartDL
 validators
 hachoir
 pybase64
-redis
 html2text
 bing_image_downloader
