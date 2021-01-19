@@ -181,7 +181,6 @@ try:
 except BaseException:
     raise Exception("Your redis server is not alive, please check again.")
 
-
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 oko = TelegramClient("kora", API_ID, API_HASH)
 kp = Client("koraPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
