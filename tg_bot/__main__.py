@@ -150,7 +150,7 @@ def start(update, context):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text="Add saber to your group",
+                            text="Add kora to your group",
                             url="t.me/{}?startgroup=true".format(context.bot.username))
                     ],
                     [
