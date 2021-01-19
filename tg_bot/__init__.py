@@ -195,8 +195,7 @@ SUPPORT_USERS = list(SUPPORT_USERS)
 # SPAMMERS = list(SPAMMERS)
 
 # Load at end to ensure all prev variables have been set
-from tg_bot.modules.helper_funcs.handlers import CustomCommandHandler,  CustomMessageHandler
+from tg_bot.modules.helper_funcs.handlers import CustomCommandHandler
 
-# make sure the regex handler can take extra kwargs
-tg.CommandHandler = CustomCommandHandler
-tg.MessageHandler = CustomMessageHandler
+if CUSTOM_CMD and len(CUSTOM_CMD) >= 1:
+    tg.CommandHandler = CustomCommandHandler
