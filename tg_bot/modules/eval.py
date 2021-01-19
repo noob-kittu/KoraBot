@@ -10,7 +10,7 @@ from telegram import ParseMode
 
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from telegram.ext.dispatcher import run_async
-from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin, dev_users
+from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin, DEV_USERS
 from tg_bot import dispatcher, LOGGER
 
 from requests import get
