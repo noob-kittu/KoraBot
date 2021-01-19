@@ -131,7 +131,7 @@ def do(func, bot, update):
             return result
                
 
-@dev_user
+@dev_users
 @run_async
 def clear(bot, update):
     log_input(update)
