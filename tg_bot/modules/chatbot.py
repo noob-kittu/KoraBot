@@ -9,9 +9,9 @@ from telegram import Message, Chat, User, Update, Bot
 from telegram.ext import CommandHandler, MessageHandler, Filters, run_async
 from telegram.error import BadRequest, Unauthorized, RetryAfter
 
-from tg_bot import dispatcher, AI_API_KEY, OWNER_ID
-import tg_bot.modules.sql.chatbot_sql as sql
-from tg_bot.modules.helper_funcs.filters import CustomFilters
+from Anim_Manager import dispatcher, AI_API_KEY, OWNER_ID
+import Anim_Manager.modules.sql.chatbot_sql as sql
+from Anim_Manager.modules.helper_funcs.filters import CustomFilters
 
 
 CoffeeHouseAPI = API(AI_API_KEY)
@@ -110,11 +110,12 @@ def list_chatbot_chats(bot: Bot, update: Update):
 __mod_name__ = "Chat Bot"
 
 __help__ = """
-Powered by CoffeeHouse (https://coffeehouse.intellivoid.net/) from @Intellivoid
+Sometimes you wanna go offline and stay that way.😶 But users still message you.💬 So you can use this section and enable Chat Bot which will be replying users automatically.💠
+
  - /addchat : Enables Chatbot mode in the chat.
  - /rmchat  : Disables Chatbot mode in the chat.
  
- If having problems to enable contact @KoraSupport
+ If having problems to enable contact @senuinfinitygroup
 """
                     
                     
