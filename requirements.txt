@@ -3,7 +3,7 @@ emoji
 jikanpy
 beautifulsoup4
 bs4
-requests==2.20.0
+requests==2.31.0
 sqlalchemy
 python-telegram-bot==12.0.0
 psycopg2-binary
